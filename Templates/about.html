@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kissan Saathiya</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="about-page">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<!-- ================= MAIN ================= -->
+<div class="about-container">
+
+    <div class="about-card">
+
+        <h1>About Kissan Saathiya</h1>
+
+        <!-- CENTER IMAGE -->
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" class="about-img">
+
+        <!-- CONTENT -->
+        <p>
+            Kissan Saathiya is a smart digital platform designed to support farmers with modern agricultural solutions.
+            It combines technology, data, and AI to help farmers make better decisions in their daily farming activities.
+        </p>
+        <p>
+        We chose the name <strong>Kissan Saathiya</strong> to represent a trusted companion for farmers. 
+        “Kissan” stands for farmers, and “Saathiya” means a supportive friend who is always there to help. 
+        Together, it reflects our mission to guide and empower farmers with the right knowledge and technology.
+        </p>
+
+        <p>
+            From real-time weather updates and crop recommendations to pest detection and fertilizer planning,
+            the system provides accurate guidance to improve productivity and reduce risks.
+            It also simplifies access to government schemes, ensuring farmers get the benefits they deserve.
+        </p>
+
+        <p>
+            Our goal is to empower farmers with knowledge, improve efficiency in farming practices,
+            and contribute towards a smarter and more sustainable agricultural future.
+        </p>
+
+        <h3 class="quote">
+            “Empowering farmers today for a better harvest tomorrow.”
+        </h3>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally</p>
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

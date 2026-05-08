@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Sathi - Register</title>
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+    <div class="login-card">
+
+        <h1>Welcome</h1>
+        <h2>Kissan Saathiya</h2>
+
+        <p class="tagline">Your digital friend to make farming easier and smarter</p>
+
+        <h3>Create Account</h3>
+
+        <form method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <input type="password" name="password" placeholder="Create password" required>
+
+            <!-- Password rules -->
+            <p class="password-rules">
+                Password must include:
+                <br>• At least 8 characters
+                <br>• One uppercase letter
+                <br>• One number
+                <br>• One special character
+            </p>
+
+            <button type="submit">Register</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <p class="switch">
+            Already have an account? <a href="/login">Login</a>
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>

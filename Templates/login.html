@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Sathi - Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <h1>Welcome</h1>
+
+        <h2>Kissan Saathiya</h2>
+
+        <p class="tagline">
+            Your digital friend to make farming easier and smarter
+        </p>
+
+        <h3>Sign In</h3>
+
+        <!-- SUCCESS MESSAGE -->
+        {% if success %}
+            <div class="success-message">
+                Successfully registered. Please login now.
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <!-- ERROR MESSAGE -->
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <p class="switch">
+            New user?
+            <a href="/register">Register here</a>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

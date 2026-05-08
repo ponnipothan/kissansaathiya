@@ -1,0 +1,904 @@
+/* ================= GLOBAL STYLES ================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f7fb;
+}
+
+/* ================= LOGIN PAGE ================= */
+.login-page {
+    height: 100vh;
+
+    /* Background image */
+    background: url("/static/images/farm.jpg") no-repeat center center/cover;
+
+    /* Overlay effect (important for readability) */
+    position: relative;
+}
+.login-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.4); /* dark overlay */
+    z-index: 0;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 1; /* 👈 important */
+}
+.login-card {
+    background: #fff8e1; /* light warm cream */
+    padding: 30px;
+    width: 340px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* ================= COMMON FORM ================= */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1b5e20;
+}
+
+/* ================= LINKS ================= */
+a {
+    color: #2e7d32;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ================= ERROR ================= */
+.error {
+    color: red;
+}
+/* ================= TAGLINE ================= */
+.tagline {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* ================= PASSWORD RULES ================= */
+.password-rules {
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    margin: 10px 0;
+}
+
+/* ================= SWITCH TEXT ================= */
+.switch {
+    margin-top: 15px;
+    font-size: 14px;
+}
+/* ================= SUBSIDY PAGE ================= */
+
+/* Card for schemes */
+.subsidy-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+/* Individual scheme */
+.scheme h2 {
+    color: #2e7d32;
+}
+
+/* Form card */
+.subsidy-form-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Result box */
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e8f5e9;
+    border-left: 5px solid #2e7d32;
+    border-radius: 8px;
+}
+
+/* Back button */
+.back-btn {
+    background: transparent;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.back-btn:hover {
+    background: #2e7d32;
+    color: white;
+}
+/* ================= SUBSIDY PAGE ================= */
+
+.subsidy-page {
+    background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+    min-height: 100vh;
+    padding: 30px 0;
+}
+
+.subsidy-container {
+    width: 80%;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Title Center */
+.center-title {
+    text-align: center;
+    color: #1b5e20;
+}
+
+/* Caution Box */
+.caution {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-left: 5px solid #ffc107;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* Scheme Cards */
+.scheme-card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.scheme-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Form Styling */
+.subsidy-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Result Card */
+.result-card {
+    background: #e8f0e8;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #2e7d32;
+    margin-top: 20px;
+}
+/* ================= FORM CONSISTENCY FIX ================= */
+.subsidy-form input,
+.subsidy-form select {
+    width: 100%;
+    height: 42px;              /* 👈 fixed height */
+    padding: 8px 10px;
+    margin: 8px 0 15px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;   /* 👈 VERY IMPORTANT */
+    font-size: 14px;
+}
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: #2e7d32;
+    padding: 10px 30px;
+}
+
+/* Logo stays left */
+.logo img {
+    height: 55px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.brand-name {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
+/* Menu moves to right */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin-left: auto;  
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Logout button */
+.logout-btn {
+    background: #c62828;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-left: 20px;   /* 👈 spacing from menu */
+}
+
+.logout-btn:hover {
+    background: #8e0000;
+}
+/* ================= BANNER ================= */
+.banner-img {
+    width: 100%;
+    height: auto;
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: #f1f8e9;
+}
+
+.about-section h2 {
+    color: #1b5e20;
+    margin-bottom: 15px;
+}
+
+.about-section p {
+    width: 70%;
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: #333;
+}
+
+.quote {
+    margin-top: 20px;
+    font-style: italic;
+    color: #2e7d32;
+}
+
+/* ================= TESTIMONIALS ================= */
+.testimonials {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.testimonials h2 {
+    color: #1b5e20;
+    margin-bottom: 30px;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 20px;
+    width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.testimonial-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background: #1b5e20;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+/* ================= WEATHER PAGE ================= */
+
+.weather-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+}
+.weather-page {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* CARD */
+.weather-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 35px;
+    width: 380px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
+
+/* TITLE */
+.weather-card h2 {
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+/* INPUT */
+.weather-card input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 12px;
+}
+
+/* BUTTON */
+.weather-card button {
+    width: 100%;
+    padding: 10px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.weather-card button:hover {
+    background: #1b5e20;
+}
+
+/* RESULT */
+.weather-result {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.weather-result h3 {
+    margin: 6px 0;
+}
+
+/* ADVICE */
+.advice {
+    margin-top: 12px;
+    padding: 10px;
+    background: #e8f5e9;
+    border-left: 4px solid #2e7d32;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* ERROR */
+.error {
+    color: red;
+    margin-top: 10px;
+}
+/* ================= WEATHER BACKGROUNDS ================= */
+.weather-page.sunny {
+    background-image: url("/static/images/sunny.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.weather-page.rainy {
+    background-image: url("/static/images/rain.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.weather-page.winter {
+    background-image: url("/static/images/winter.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.weather-page.normal {
+    background-image: url("/static/images/normal.jpg");
+    background-size: cover;
+    background-position: center;
+}
+.weather-page::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.weather-container {
+    background: none;  
+}
+/* ================= RECOMMEND PAGE BACKGROUND ================= */
+.recommend-page {
+    background-image: url("/static/images/recommendcrop.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* ================= MAIN CONTAINER ================= */
+.recommend-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+/* ================= CARD ================= */
+.recommend-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    width: 360px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* ================= HEADINGS ================= */
+.recommend-card h2 {
+    margin-bottom: 15px;
+    color: #2e7d32;
+}
+
+/* ================= FORM ================= */
+.recommend-card input,
+.recommend-card select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* ================= BUTTON ================= */
+.recommend-card button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.recommend-card button:hover {
+    background: #1b5e20;
+}
+
+/* ================= RESULT BOX ================= */
+.result-box {
+    margin-top: 15px;
+    padding: 12px;
+    background: #e8f5e9;
+    border-radius: 8px;
+}
+
+.result-box span {
+    color: #1b5e20;
+    font-weight: bold;
+}
+
+/* ================= FERTILIZER RESULT ================= */
+.fertilizer-result {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f1f8e9;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.fertilizer-result h2 {
+    text-align: center;
+}
+
+.fertilizer-result p {
+    margin: 6px 0;
+}
+
+/* ================= TIP ================= */
+.tip {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #2e7d32;
+}
+.recommend-card input,
+.recommend-card select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+    height: 40px;             
+}
+/* ================= PEST PAGE ================= */
+.pest-page {
+    background-image: url("/static/images/bug2.jpeg");
+    background-size: cover;
+    background-position: center;
+}
+
+/* Center container */
+.pest-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Main card */
+.pest-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    width: 420px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* ================= FORM ================= */
+
+.pest-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* File input */
+input[type="file"] {
+    padding: 8px;
+}
+
+/* Inputs + dropdowns */
+.pest-card input,
+.pest-card select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+.pest-card button {
+    padding: 10px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pest-card button:hover {
+    background: #1b5e20;
+}
+
+/* ================= RESULT ================= */
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f8e9;
+    border-radius: 10px;
+}
+
+/* Highlight disease */
+.result-box span {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* Image */
+.pest-img {
+    width: 180px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+/* ================= PESTICIDE SECTION ================= */
+
+.pesticide-form {
+    margin-top: 25px;
+    padding: 15px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.pesticide-form h2 {
+    text-align: center;
+}
+
+/* Labels */
+.pesticide-form label {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Inputs same size */
+.pesticide-form input,
+.pesticide-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Result box */
+.pesticide-result {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff3e0;
+    border-radius: 8px;
+}
+/* ================= UNIFORM FORM FIELDS ================= */
+.pest-card input,
+.pest-card select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.pest-card input[type="file"] {
+    padding: 8px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+/*  buttons consistent */
+.pest-card button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.pest-card button:hover {
+    background: #1b5e20;
+}
+/* ================= ABOUT PAGE ================= */
+.about-page {
+    background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+    min-height: 100vh;
+}
+
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 400px;   
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 15px auto;  
+    display: block;
+}
+
+.about-card p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.about-card .quote {
+    margin-top: 15px;
+    color: #2e7d32;
+    font-style: italic;
+}
+body.pest-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.pest-container {
+    flex: 1;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+.success-message{
+    background:#d4edda;
+    color:#155724;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:5px;
+}
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .brand-text {
+        font-size: 16px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 8px;
+    }
+
+    .logout-btn {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* CONTAINERS */
+    .pest-container,
+    .subsidy-container,
+    .weather-container,
+    .crop-container {
+        padding: 10px;
+    }
+
+    /* CARDS */
+    .pest-card,
+    .scheme-card,
+    .result-card {
+        width: 100%;
+        margin: 10px 0;
+        padding: 15px;
+    }
+
+    /* FORMS */
+    form {
+        width: 100%;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    /* FIX SMALL INPUT HEIGHT */
+    input,
+    select {
+        height: 42px;
+    }
+
+    /* BANNER IMAGE */
+    .banner-img {
+        height: auto;
+    }
+
+    /* TESTIMONIALS STACK */
+    .testimonial-container {
+        flex-direction: column;
+    }
+
+    .testimonial-card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        padding: 15px;
+    }
+}
+/* GLOBAL RESET */
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

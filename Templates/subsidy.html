@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Subsidies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="subsidy-page">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<!-- ================= MAIN ================= -->
+<div class="subsidy-container">
+
+    <h1 class="center-title">🏛️ Government Subsidy Schemes</h1>
+
+    <p class="caution">
+        ⚠️ For accurate eligibility and application support, please contact your local Village Agriculture Officer.
+    </p>
+
+    <hr>
+
+    <!-- ================= SCHEME LIST ================= -->
+
+    <div class="scheme-card">
+        <h2>🌾 Rythu Bharosa (Telangana)</h2>
+        <p><b>Benefit:</b> ₹5,000 per acre per season</p>
+        <p><b>Description:</b> Direct investment support for Rabi & Kharif seasons.</p>
+        <p><b>Focus:</b> Input cost reduction</p>
+    </div>
+
+    <div class="scheme-card">
+        <h2>🛡️ Rythu Bima</h2>
+        <p><b>Benefit:</b> ₹5 lakh life insurance</p>
+        <p><b>Description:</b> Covers farmers aged 18–59 with full premium paid by government.</p>
+        <p><b>Focus:</b> Family security</p>
+    </div>
+
+    <div class="scheme-card">
+        <h2>💰 PM-KISAN (Central)</h2>
+        <p><b>Benefit:</b> ₹6,000/year</p>
+        <p><b>Description:</b> ₹2,000 paid every 4 months to farmers.</p>
+        <p><b>Focus:</b> Financial assistance</p>
+    </div>
+
+    <div class="scheme-card">
+        <h2>🚜 Farm Mechanization Subsidy</h2>
+        <p><b>Benefit:</b> 50% – 80% subsidy</p>
+        <p><b>Description:</b> Support for tractors, tillers & modern equipment.</p>
+        <p><b>Focus:</b> Modernization</p>
+    </div>
+
+    <div class="scheme-card">
+        <h2>💧 Micro Irrigation (PMKSY)</h2>
+        <p><b>Benefit:</b> Up to 90% subsidy</p>
+        <p><b>Description:</b> Drip & sprinkler irrigation support.</p>
+        <p><b>Focus:</b> Water conservation</p>
+    </div>
+
+    <hr>
+
+    <!-- ================= SMART SUGGESTION ================= -->
+
+    <h2 class="center-title">🤖 Find Best Subsidy for You</h2>
+
+    <form method="POST" action="/subsidy" class="subsidy-form">
+
+        <div class="form-group">
+            <label>Users Age:</label>
+            <input type="number" name="age" required>
+        </div>
+
+        <div class="form-group">
+            <label>Crop:</label>
+            <select name="crop">
+                <option>Rice</option>
+                <option>Tomato</option>
+                <option>Chilli</option>
+                <option>Corn</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Season:</label>
+            <select name="season">
+                <option>Kharif</option>
+                <option>Rabi</option>
+                <option>Summer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Land Area (in acres):</label>
+            <input type="number" name="area" required>
+        </div>
+
+        <div class="form-group">
+            <label>Location:</label>
+            <input type="text" name="location" placeholder="District/State" required>
+        </div>
+
+        <button type="submit">Suggest Best Scheme</button>
+    </form>
+
+    <hr>
+
+    {% if best_scheme %}
+    <div class="result-card">
+        <h2>✅ Recommended Scheme</h2>
+        <h3>{{ best_scheme }}</h3>
+        <p>{{ scheme_reason }}</p>
+    </div>
+    {% endif %}
+
+    <!-- BACK BUTTON -->
+    <a href="/" class="back-link">
+        <button class="back-btn">⬅ Home</button>
+    </a>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally</p>
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

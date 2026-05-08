@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Saathiya - Weather</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="weather-page {{ bg }}">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<!-- ================= WEATHER SECTION ================= -->
+<div class="weather-container">
+
+    <div class="weather-card">
+
+        <h2>🌤️ Check Weather</h2>
+
+        <form method="POST" action="/weather">
+            <input type="text" name="city" placeholder="Enter city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+            <div class="weather-result">
+                <h3>🌡 Temperature: {{weather.temp}} °C</h3>
+                <h3>💧 Humidity: {{weather.humidity}}%</h3>
+                <h3>☁ Condition: {{weather.desc}}</h3>
+
+                {% if advice %}
+                    <p class="advice">{{ advice }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+<footer class="footer">
+
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally </p>
+
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Saathiya - Crop Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="recommend-page">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<div class="recommend-container">
+
+    <div class="recommend-card">
+
+        <!-- ================= CROP ================= -->
+        <h2>🌱 Smart Crop Recommendation</h2>
+
+        <form method="POST" action="/recommendcrop">
+            <input type="text" name="city" placeholder="Enter location" required>
+
+            <select name="soil">
+                <option value="black">Black Soil</option>
+                <option value="red">Red Soil</option>
+                <option value="loamy">Loamy Soil</option>
+                <option value="sandy">Sandy Soil</option>
+            </select>
+
+            <button type="submit">Recommend Crop</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- ================= RESULT ================= -->
+        {% if crop %}
+            <div class="result-box">
+                <h3>🌾 Recommended Crop: <span>{{ crop }}</span></h3>
+
+                <form method="POST" action="/fertilizer_form">
+                    <input type="hidden" name="crop" value="{{ crop }}">
+                    <button type="submit">Calculate Fertilizer</button>
+                </form>
+            </div>
+        {% endif %}
+
+        <hr>
+
+        <!-- ================= FERTILIZER SECTION ================= -->
+        {% if show_fertilizer %}
+        <h2>🌾 Fertilizer Calculation</h2>
+
+        <form method="POST" action="/calculate_fertilizer">
+
+            <input type="hidden" name="crop" value="{{ crop }}">
+
+            <label>Land Area:</label>
+            <input type="number" name="area" required>
+
+            <label>Unit:</label>
+            <select name="unit">
+                <option value="acre">Acre</option>
+                <option value="sq_meter">Square Meter</option>
+                <option value="sq_yard">Square Yard</option>
+                <option value="gunta">Gunta</option>
+            </select>
+
+            <button type="submit">Calculate Fertilizer</button>
+        </form>
+
+        <!-- RESULT INSIDE SAME BLOCK -->
+        {% if nitrogen is not none %}
+        <div class="fertilizer-result">
+            <h2>🌿 Fertilizer Plan (NPK)</h2>
+
+            <h3>Crop: {{ fert_crop }}</h3>
+
+            <p>🌿 Nitrogen (N): <b>{{ nitrogen }} kg</b></p>
+            <p>🌾 Phosphorus (P): <b>{{ phosphorus }} kg</b></p>
+            <p>🌻 Potassium (K): <b>{{ potassium }} kg</b></p>
+
+            <p class="tip">👉 Apply in 2–3 split doses during crop growth.</p>
+        </div>
+        {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally</p>
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

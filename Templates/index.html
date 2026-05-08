@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kissan Saathiya</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <!-- LOGO (IMAGE) -->
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Kissan Saathiya">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <!-- MENU -->
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <!-- LOGOUT -->
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<!-- ================= BANNER ================= -->
+<section class="banner">
+    <img src="{{ url_for('static', filename='images/banner.jpg') }}" class="banner-img">
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="about-section">
+
+    <h2>Welcome To Kissan Saathiya</h2>
+
+    <p>
+        Kissan Saathiya is designed to support farmers with smart and timely agricultural insights.
+        From weather updates to crop recommendations, our platform simplifies decision-making.
+    </p>
+
+    <p>
+        With the power of AI and data, farmers can detect crop diseases early, optimize fertilizer usage,
+        and access government schemes easily without confusion.
+    </p>
+
+    <h3 class="quote">“Ensuring smart farming today to a better harvest tommorrow”</h3>
+
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials">
+
+    <h2>Farmer Experiences</h2>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial-card">
+            <img src="{{ url_for('static', filename='images/farmer1.jpg') }}" alt="Farmer">
+            <p>"Kissan Saathiya helped me detect crop disease early and saved my yield."</p>
+            <h4>- Ramesh, Telangana</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <img src="{{ url_for('static', filename='images/farmer2.jpg') }}" alt="Farmer">
+            <p>"Weather insights helped me plan irrigation better and reduce water usage."</p>
+            <h4>- Lakshmi, Andhra Pradesh</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <img src="{{ url_for('static', filename='images/farmer3.jpg') }}" alt="Farmer">
+            <p>"I discovered the right subsidy scheme through this app. Very helpful!"</p>
+            <h4>- Raju, Karnataka</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally </p>
+
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+
+</footer>
+
+</body>
+</html>

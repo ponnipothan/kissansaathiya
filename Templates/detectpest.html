@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect Pest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="pest-page">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}">
+        <span class="brand-name">KISSAN SAATHIYA</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/recommendcrop">Recommend Crop</a></li>
+        <li><a href="/detectpest">Detect Pest</a></li>
+        <li><a href="/subsidy">Government Schemes</a></li>
+        <li><a href="/about">About Us</a></li>
+    </ul>
+
+    <a href="/logout">
+        <button class="logout-btn">Logout</button>
+    </a>
+
+</nav>
+
+<!-- ================= MAIN ================= -->
+<div class="pest-container">
+<div class="pest-card">
+
+<h2>🐛 Pest Detection</h2>
+
+<form method="POST" action="/pest" enctype="multipart/form-data">
+    <input type="file" name="image" required>
+    <button type="submit">Detect Pest</button>
+</form>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<!-- ================= RESULT  ================= -->
+{% if pest %}
+<div class="result-box">
+    <h3>Disease: <span>{{ pest }}</span></h3>
+
+    {% if confidence %}
+        <h4>Confidence: {{ confidence }}%</h4>
+    {% endif %}
+
+    {% if pesticide %}
+        <p><b>Pesticide:</b> {{ pesticide }}</p>
+    {% endif %}
+
+    {% if solution %}
+        <p><b>Solution:</b> {{ solution }}</p>
+    {% endif %}
+
+    {% if image %}
+        <img src="/{{ image }}" class="pest-img">
+    {% endif %}
+
+    {% if "Healthy" not in pest %}
+    <form method="POST" action="/pesticide_form">
+        <input type="hidden" name="disease" value="{{ pest }}">
+        <button type="submit">🧪 Calculate Pesticide</button>
+    </form>
+    {% endif %}
+</div>
+{% endif %}
+
+<!-- ================= PESTICIDE FORM ================= -->
+{% if show_form %}
+<div class="pesticide-form">
+
+<h2>🧪 Pesticide Calculation</h2>
+
+<form method="POST" action="/calculate_pesticide">
+
+    <input type="hidden" name="disease" value="{{ pest }}">
+
+    <label>Land Area:</label>
+    <input type="number" name="area" required>
+
+    <label>Unit:</label>
+    <select name="unit">
+        <option value="acre">Acre</option>
+        <option value="sq_meter">Square Meter</option>
+        <option value="sq_yard">Square Yard</option>
+        <option value="gunta">Gunta</option>
+    </select>
+
+    <label>Age (in days):</label>
+    <input type="number" name="age" required>
+
+    <label>Season:</label>
+    <select name="season">
+        <option value="kharif">Kharif</option>
+        <option value="rabi">Rabi</option>
+        <option value="summer">Summer</option>
+    </select>
+
+    <label>Soil (optional):</label>
+    <select name="soil">
+        <option value="">--Optional--</option>
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="loamy">Loamy</option>
+    </select>
+
+    <br><br>
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result_pesticide %}
+<div class="pesticide-result">
+    <h3>Total: {{ result_pesticide }} Liters</h3>
+    <p><b>Pesticide:</b> {{ pesticide }}</p>
+    <p>Interval: {{ interval }}</p>
+    <p>Duration: {{ duration }}</p>
+</div>
+{% endif %}
+
+</div>
+{% endif %}
+
+</div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <p>© 2026 Kissan Saathiya | Empowering Farmers Digitally</p>
+    <p>Contact: <a href="mailto:kissansathiya@gmail.com">kissansathiya@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
