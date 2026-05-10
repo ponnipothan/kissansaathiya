@@ -46,7 +46,7 @@ classes = [
 # APP SETUP
 # =========================
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
+app.secret_key = os.getenv("SECRET_KEY", "kissan_default_secret_key")
 API_KEY = os.getenv("API_KEY")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
