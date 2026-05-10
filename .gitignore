@@ -5,4 +5,3 @@ venv/
 instance/
 static/uploads/
 dataset/
-plant_disease_model.h5
