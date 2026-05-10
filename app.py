@@ -1,5 +1,5 @@
 import pickle
-import sqlite3
+import psycopg2
 import re
 from flask import Flask, render_template, request, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +14,11 @@ from PIL import Image
 from functools import wraps
 from dotenv import load_dotenv
 load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+def get_db_connection():
+    conn = psycopg2.connect(DATABASE_URL)
+    return conn
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -52,21 +57,25 @@ API_KEY = os.getenv("API_KEY")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
 def init_db():
-    conn = sqlite3.connect("users.db")
+
+    conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             email TEXT UNIQUE,
             password TEXT
         )
     """)
 
     conn.commit()
+    cursor.close()
     conn.close()
 
+
 init_db()
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -76,34 +85,30 @@ def register():
         email = request.form["email"]
         password = request.form["password"]
 
-        # PASSWORD VALIDATION
         if not re.match(
             r'^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$',
             password
         ):
-
             return render_template(
                 "register.html",
                 error="Password must be at least 8 characters and include uppercase, number, and special character"
             )
 
-        # HASH PASSWORD
         hashed_password = generate_password_hash(password)
 
-        conn = sqlite3.connect("users.db")
+        conn = get_db_connection()
         cursor = conn.cursor()
 
         try:
-
             cursor.execute(
-                "INSERT INTO users (email, password) VALUES (?, ?)",
+                "INSERT INTO users (email, password) VALUES (%s, %s)",
                 (email, hashed_password)
             )
-
             conn.commit()
 
-        except sqlite3.IntegrityError:
-
+        except psycopg2.errors.UniqueViolation:
+            conn.rollback()
+            cursor.close()
             conn.close()
 
             return render_template(
@@ -111,16 +116,17 @@ def register():
                 error="User already registered with this email"
             )
 
+        cursor.close()
         conn.close()
 
-        # SUCCESS REDIRECT
         return redirect("/login?success=1")
 
     return render_template("register.html")
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
-    # GET SUCCESS MESSAGE
     success = request.args.get("success")
 
     if request.method == "POST":
@@ -128,31 +134,27 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
 
-        conn = sqlite3.connect("users.db")
+        conn = get_db_connection()
         cursor = conn.cursor()
 
         cursor.execute(
-            "SELECT * FROM users WHERE email=?",
+            "SELECT * FROM users WHERE email=%s",
             (email,)
         )
 
         user = cursor.fetchone()
 
+        cursor.close()
         conn.close()
 
-        # CHECK HASHED PASSWORD
         if user and check_password_hash(user[2], password):
-
             session["user"] = email
-
             return redirect("/")
 
-        else:
-
-            return render_template(
-                "login.html",
-                error="Invalid credentials"
-            )
+        return render_template(
+            "login.html",
+            error="Invalid credentials"
+        )
 
     return render_template(
         "login.html",
